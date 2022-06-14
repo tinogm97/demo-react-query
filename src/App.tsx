@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { BackButton } from "./components/back-button";
+import CreateItem from "./components/create-item";
+import ListItems from "./components/list-items";
+import ShowItem from "./components/show-item";
 
-function App() {
+export default function App() {
+  const [itemId, setItemId] = React.useState(-1);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Demo React-query</h1>
+      <BackButton itemId={itemId} setItemId={setItemId} />
+      <ShowItem itemId={itemId} />
+      {itemId === -1 && (
+        <div>
+          <CreateItem />
+          <ListItems setItemId={setItemId} />
+        </div>
+      )}
     </div>
   );
 }
-
-export default App;
