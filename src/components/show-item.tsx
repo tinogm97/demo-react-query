@@ -4,7 +4,8 @@ type ShowItemProps = {
   itemId: number;
 };
 export default function ShowItem({ itemId }: ShowItemProps) {
-  const { data: item, error, isLoading } = useShowItem(itemId);
+  const { data: item, error, isLoading, isError } = useShowItem(itemId);
+
   if (itemId < 1) return null;
   if (isLoading) {
     return (
@@ -14,7 +15,7 @@ export default function ShowItem({ itemId }: ShowItemProps) {
     );
   }
 
-  if (error) {
+  if (isError) {
     return <div>Error fetching item: {error.message}</div>;
   }
   if (!item) return null;

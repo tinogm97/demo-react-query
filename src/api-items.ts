@@ -4,8 +4,12 @@ import { Item } from "./components/types";
 const API = "http://localhost:3005";
 
 export const getItemById = async (itemId: number) => {
-  const { data } = await axios.get(`${API}/items/${itemId}`);
-  return data;
+  try {
+    const { data } = await axios.get(`${API}/items/${itemId}`);
+    return data;
+  } catch (e) {
+    throw e;
+  }
 };
 
 export const getItems = async () => {
